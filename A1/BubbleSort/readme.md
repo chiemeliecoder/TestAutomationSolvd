@@ -1,1 +1,1 @@
-Sorting algorithm implementation. for bubble sort
+Sorting algorithm implementation for bubble sort
