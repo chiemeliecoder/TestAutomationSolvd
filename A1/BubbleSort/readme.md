@@ -5,17 +5,11 @@ Sorting algorithm implementation for bubble sort
 
 
 
-*The inner loop initializes a variable j to zero, and checks if j is less than n-i-1. If j is 	
-*less than n-i-1, it executes the code inside the loop and then increments j by 1. It then 	
-*checks the condition again, and if j is still less than n-i-1, it executes the code inside 	
-*the loop again, and so on, until j is no longer less than n-i-1.
+*The inner loop initializes a variable j to zero, and checks if j is less than n-i-1. If j is*less than n-i-1, it executes the code inside the loop and then increments j by 1. It then*checks the condition again, and if j is still less than n-i-1, it executes the code inside*the loop again, and so on, until j is no longer less than n-i-1.
 
 
 
-*A temporary variable temp is created to store the value of arr[j].
-*The value of arr[j] is assigned to arr[j+1], which swaps the two values.(new value created)
-*The value of temp is assigned to arr[j], effectively placing the original value of arr[j] 	
-*into the arr[j+1] position.
+*A temporary variable temp is created to store the value of arr[j].*The value of arr[j] is assigned to arr[j+1], which swaps the two values.(new value created)*The value of temp is assigned to arr[j], effectively placing the original value of arr[j]*into the arr[j+1] position.
 
 time complexity Worst O(n^2) space complexity is 0(1)
 
