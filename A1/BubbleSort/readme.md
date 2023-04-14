@@ -1,10 +1,7 @@
 Sorting algorithm implementation for bubble sort
 
  
-*The outer loop initializes a variable i to zero, and checks if i is less than n-1, where n 	
-*is the length of the array. If i is less than n-1, it executes the code inside the loop and 	
-*then increments i by 1. It then checks the condition again, and if i is still less than n-1, 	
-*it executes the code inside the loop again, and so on, until i is no longer less than n-1.
+*The outer loop initializes a variable i to zero, and checks if i is less than n-1, where n*is the length of the array. If i is less than n-1, it executes the code inside the loop and*then increments i by 1. It then checks the condition again, and if i is still less than n-1,*it executes the code inside the loop again, and so on, until i is no longer less than n-1.
 
 
 
