@@ -9,7 +9,7 @@ Sorting algorithm implementation for bubble sort
 
 
 
-*A temporary variable temp is created to store the value of arr[j].*The value of arr[j] is assigned to arr[j+1], which swaps the two values.(new value created)*The value of temp is assigned to arr[j], effectively placing the original value of arr[j]*into the arr[j+1] position.*
+*A temporary variable temp is created to store the value of arr[j].The value of arr[j] is assigned to arr[j+1], which swaps the two values.(new value created)*The value of temp is assigned to arr[j], effectively placing the original value of arr[j]*into the arr[j+1] position.*
 
 *time complexity Worst O(n^2) space complexity is 0(1)*
 
