@@ -29,6 +29,7 @@ hs_err_pid*
 !/.idea
 /.idea/*
 !/.idea/codeStyles
+!/.idea/workspace.xml
 !/.idea/inspectionProfiles
 */**/.idea
 .shelf
