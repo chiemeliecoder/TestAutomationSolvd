@@ -42,6 +42,7 @@ hs_err_pid*
 
 .DS_Store
 *.exec
+*.iml
 *.html
 *.gif
 *.css
