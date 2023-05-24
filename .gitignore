@@ -50,6 +50,5 @@ hs_err_pid*
 *.bin
 *.idx
 *.MF
-*.properties
 *.bat
 *.png
