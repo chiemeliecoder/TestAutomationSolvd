@@ -35,6 +35,7 @@ hs_err_pid*
 /*.iml
 /*.ipr
 /*.iws
+/target
 
 .DS_Store
 *.exec
