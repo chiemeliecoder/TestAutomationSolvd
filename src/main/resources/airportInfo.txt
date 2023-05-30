@@ -1,0 +1,7 @@
+
+======Commercial Airport info======
+DomesticAirport{nameAirport='Berry Field Nashville', location='Nashville', airportCode='BNA', landingFee=750.0}
+InternationalAirport{nameAirport='Haneda Airport', location='Tokyo', airportCode='HND', landingFee=1000.0}
+Commercial jet landing fee: $1500.0
+Total landing fee for domestic airport:  $2250.0
+Total landing fee for international airport:  $2500.0
