@@ -10,6 +10,7 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.stream.IntStream;
 
 public class Flight implements Runnable {
   protected String flghtname;
@@ -95,13 +96,20 @@ public class Flight implements Runnable {
     CountDownLatch latch = new CountDownLatch(CONNECTION_POOL_SIZE);
     ExecutorService executor = Executors.newFixedThreadPool(CONNECTION_POOL_SIZE);
 
-    for (int i = 0; i < CONNECTION_POOL_SIZE; i++) {
-      executor.execute(() -> {
-        Connection connection = createConnection();
-        connectionPool.offer(connection);
-        latch.countDown();
-      });
-    }
+//    for (int i = 0; i < CONNECTION_POOL_SIZE; i++) {
+//      executor.execute(() -> {
+//        Connection connection = createConnection();
+//        connectionPool.offer(connection);
+//        latch.countDown();
+//      });
+//    }
+
+    IntStream.range(0, CONNECTION_POOL_SIZE)
+        .forEach(i -> executor.execute(() -> {
+          Connection connection = createConnection();
+          connectionPool.offer(connection);
+          latch.countDown();
+        }));
 
     executor.shutdown();
 
@@ -136,13 +144,24 @@ public class Flight implements Runnable {
 
   private static void executeFlightThreads() {
     ExecutorService executor = Executors.newFixedThreadPool(CONNECTION_POOL_SIZE);
-    for (int i = 0; i < CONNECTION_POOL_SIZE; i++) {
-      Flight flight = new Flight("Flight " + (i + 1), "Source " + (i + 1),
-          "Destination " + (i + 1), (i + 1) * 100);
-      Flight flightThread = new Flight(flight);
-      flight.flight = flight;
-      executor.execute(flightThread);
-    }
+
+//    for (int i = 0; i < CONNECTION_POOL_SIZE; i++) {
+//      Flight flight = new Flight("Flight " + (i + 1), "Source " + (i + 1),
+//          "Destination " + (i + 1), (i + 1) * 100);
+//      Flight flightThread = new Flight(flight);
+//      flight.flight = flight;
+//      executor.execute(flightThread);
+//    }
+
+    IntStream.range(0, CONNECTION_POOL_SIZE)
+        .forEach(i -> {
+          Flight flight = new Flight("Flight " + (i + 1), "Source " + (i + 1),
+              "Destination " + (i + 1), (i + 1) * 100);
+          Flight flightThread = new Flight(flight);
+          flight.flight = flight;
+          executor.execute(flightThread);
+        });
+
     executor.shutdown();
   }
 

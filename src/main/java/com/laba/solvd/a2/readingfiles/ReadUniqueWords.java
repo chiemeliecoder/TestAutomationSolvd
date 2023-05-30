@@ -1,6 +1,7 @@
 package com.laba.solvd.a2.readingfiles;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -21,16 +22,37 @@ public class ReadUniqueWords {
   public static void main(String[] args) {
     File putFile = new File("src/main/resources/airportInfo.txt"); //file with info
     File getFile = new File("src/main/resources/getFileInfo.txt") ; //file to write into
-    try {
-      String content = FileUtils.readFileToString(putFile, "UTF-8");
-      Set<String> words = new HashSet<>(Arrays.asList(StringUtils.split(content))); //splits a String into an array of substrings and vice versa
+    synchronized (getFile) {
+      try {
+        String content = FileUtils.readFileToString(putFile, "UTF-8");
+        Set<String> words = new HashSet<>(Arrays.asList(StringUtils.split(content))); // splits a String into an array of substrings and vice versa
 
-      String result = "Number of unique words: " + words.size(); //size of word
-      FileUtils.writeStringToFile(getFile, result, "UTF-8"); //send it to new file
-      System.out.println(result); //debug print result
-    } catch (IOException e) {
-      e.printStackTrace();
+        String result = "Number of unique words: " + words.size(); // size of word
+
+        FileWriter fileWriter = null;
+        try {
+          fileWriter = new FileWriter(getFile);
+          fileWriter.write(result);
+          System.out.println(result); // debug print result
+        } finally {
+          if (fileWriter != null) {
+            fileWriter.close();
+          }
+        }
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
     }
+//    try {
+//      String content = FileUtils.readFileToString(putFile, "UTF-8");
+//      Set<String> words = new HashSet<>(Arrays.asList(StringUtils.split(content))); //splits a String into an array of substrings and vice versa
+//
+//      String result = "Number of unique words: " + words.size(); //size of word
+//      FileUtils.writeStringToFile(getFile, result, "UTF-8"); //send it to new file
+//      System.out.println(result); //debug print result
+//    } catch (IOException e) {
+//      e.printStackTrace();
+//    }
   }
 
 }

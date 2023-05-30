@@ -1,7 +1,14 @@
-package com.laba.solvd.a2.airport;
+package com.laba.solvd.a2;
 
 import com.laba.solvd.a2.aircraft.Aircraft;
 import com.laba.solvd.a2.aircraft.CommercialJet;
+import com.laba.solvd.a2.airport.AbstractAirport;
+import com.laba.solvd.a2.airport.CustomLinkedList;
+import com.laba.solvd.a2.airport.DomesticAirport;
+import com.laba.solvd.a2.airport.Heliport;
+import com.laba.solvd.a2.airport.InternationalAirport;
+import com.laba.solvd.a2.airport.PrivateAirport;
+import com.laba.solvd.a2.airport.RegionalAirport;
 import com.laba.solvd.a2.enums.CommercialJetType;
 import com.laba.solvd.a2.aircraft.Helicopters;
 import com.laba.solvd.a2.airline.Airline;
@@ -304,10 +311,13 @@ public class MainClass {
       thread2.join(); // Wait for thread2 to complete
     } catch (InterruptedException e) {
       e.printStackTrace();
+    }finally{
+      synchronized (thread1) {
+        synchronized (thread2) {
+          System.out.println("All threads have completed.");
+        }
+      }
     }
-
-    // Perform further actions after both threads have completed
-    System.out.println("All threads have completed.");
 
 
     // Create an instance of the Airline class using reflection
@@ -468,6 +478,7 @@ public class MainClass {
       e.printStackTrace();
     }
     System.out.println(gateInstance.getOpen());
+    logger.debug(setOpenMethod);
 
     // Extract information about fields
     Field[] fields2 = gateClass.getDeclaredFields();
