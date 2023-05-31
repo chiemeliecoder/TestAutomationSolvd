@@ -21,6 +21,7 @@ import com.laba.solvd.a2.exceptions.AirlineException;
 import com.laba.solvd.a2.exceptions.AirportStaffException;
 import com.laba.solvd.a2.exceptions.FlightException;
 import com.laba.solvd.a2.exceptions.GateException;
+import com.laba.solvd.a2.flight.Connection;
 import com.laba.solvd.a2.flight.Flight;
 import com.laba.solvd.a2.gate.Gate;
 import com.laba.solvd.a2.staff.MaintenanceStaff;
@@ -28,7 +29,9 @@ import com.laba.solvd.a2.staff.Staff;
 import com.laba.solvd.a2.enums.StaffRole;
 import com.laba.solvd.a2.enums.Country;
 import com.laba.solvd.a2.terminal.Terminal;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -48,9 +51,11 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
+import org.apache.log4j.LogManager;
 import java.util.stream.Collectors;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
+import org.apache.log4j.Level;
 
 public class MainClass {
   private static final Logger logger = Logger.getLogger(MainClass.class);
@@ -120,6 +125,28 @@ public class MainClass {
 
     // add Flight to the list of flights
     Flight flight11 = new Flight("SA917","Nashville","Boston",400);
+
+
+    logger.info("=======Using a non existing file========");
+    try (FileReader fileReader = new FileReader("airportInfo.txt"); //if you change the file to nonexistent.txt the log info would be show
+        BufferedReader bufferedReader = new BufferedReader(fileReader)) {
+
+      String line;
+      while ((line = bufferedReader.readLine()) != null) {
+        System.out.println(line);
+      }
+
+    } catch (IOException e) {
+      // Handle exception
+      logger.log(Level.ERROR, "An error occurred while reading the file.", e);
+      logger.log(Level.WARN, "There was a warning while reading the file.", e);
+      logger.log(Level.INFO, "Information message related to reading the file.", e);
+      e.printStackTrace();
+    }
+
+
+
+
 
 
 
